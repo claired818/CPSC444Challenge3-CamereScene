@@ -1,0 +1,18 @@
+1. When using the Perspective Camera, what happens to objects farther away?
+    When using the Perspective Camera objects farther away from the camera appear smaller.
+2. When using the Orthographic Camera, what happens to object size as distance increases?
+    When using the Orthographic Camera nothing happens to object size as distance increases. All objects remain there designated sizes.
+3. Which camera looks more like real life? Explain why.
+    The perspective camera looks more like real life because as an object gets farther away from the human eye, it appears smaller.
+4. Which camera would be best for:
+    A. First-Person Shooter? Why?
+        The perspective camera is better for first-person shooter games because it's important to know how far away the enemies are. If all enemies appeared 
+        the same size the player wouldn't know which enemies to prioritize.
+    B. Technical Blueprint Software? Why?
+        For techinical documents, like blueprints, the orhographic camers is better because techinical documents rely on accurate measurements to ensure 
+        their accuracy.
+    C. Strategy Game such as Civilization? Why?
+        For a game like Civilization, the orthographic camera would be better. It's important to be able to see what's on the map. If the perspective camera
+        was used the objects farther from the player's current location might get too small to see, thus inhibiting gameplay. 
+5. What is the biggest advantage of Orthographic cameras?
+        The biggest advantage of orthographic cameras is the ability to get accurate measurements.

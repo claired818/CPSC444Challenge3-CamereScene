@@ -68,33 +68,47 @@ const ground = new THREE.Mesh(
 ground.rotation.x = -Math.PI / 2;
 scene.add(ground);
 
-const cubes = [];
-const cubeColors = [0xff6b6b, 0xffc857, 0x4ecdc4, 0x5dade2, 0xa78bfa];
+const trees = [];
 
 const positions = [
-[-6, 1, -4],
-[-3, 1, -2],
-[0, 1, 0],
-[3, 1, 2],
-[6, 1, 4]
+[-8, -4],
+[-9,  2],
+[ 0,  0],
+[ 5,  1],
+[ 6,  4],
+[ 2,  7], 
+[-3,  6],
+[ 9,  7],
+[ 10,-7],
+[-3, -5]
 ];
 
-positions.forEach(([x, y, z], index) => {
-    const cube = new THREE.Mesh(
-        new THREE.BoxGeometry(2, 2, 2),
-        new THREE.MeshStandardMaterial({ color: cubeColors[index] })
-    );
-    cube.position.set(x, y, z);
-    scene.add(cube);
-    cubes.push(cube);
+positions.forEach(([x, z]) => {
+    const trunk = new THREE.Mesh(new THREE.BoxGeometry(0.5, 1, 0.5), new THREE.MeshStandardMaterial({color: "#7c4b00"}));
+    const bottomLeaves = new THREE.Mesh(new THREE.ConeGeometry(1, 1.5, 32), new THREE.MeshStandardMaterial({color: "#2a6a2a"}));
+    const middleLeaves = new THREE.Mesh(new THREE.ConeGeometry(1, 1.5, 32), new THREE.MeshStandardMaterial({color: "#2a6a2a"}));
+    const topLeaves = new THREE.Mesh(new THREE.ConeGeometry(1, 1.5, 32), new THREE.MeshStandardMaterial({color: "#2a6a2a"}));
+
+    trunk.position.set(x, 1, z);
+    bottomLeaves.position.set(x, 2, z);
+    middleLeaves.position.set(x, 2.75, z);
+    topLeaves.position.set(x, 3.5, z);
+
+    scene.add(trunk);
+    scene.add(bottomLeaves);
+    scene.add(middleLeaves);
+    scene.add(topLeaves);
+
+    const tree = [trunk, bottomLeaves, middleLeaves, topLeaves];
+    trees.push(tree);
 });
 
-const sphere = new THREE.Mesh(
+const sun = new THREE.Mesh(
     new THREE.SphereGeometry(1.5, 32, 32),
-    new THREE.MeshStandardMaterial({ color: 0xff4444 })
+    new THREE.MeshStandardMaterial({color: "#ffd152"})
 );
-sphere.position.set(0, 1, -6);
-scene.add(sphere);
+sun.position.set(0, 7, 0);
+scene.add(sun);
 
 function resizeRenderer() {
     const width = Math.min(window.innerWidth * 0.9, 900);

@@ -16,3 +16,6 @@
         was used the objects farther from the player's current location might get too small to see, thus inhibiting gameplay. 
 5. What is the biggest advantage of Orthographic cameras?
         The biggest advantage of orthographic cameras is the ability to get accurate measurements.
+
+Reflection: I prefer the persective camera. It seems more useful because it's uses are more varied while the orthographic camera seems much more specialized.
+            One difference I learned was that images viewed with the orthographic camera look much flatter than those viewed with the perspective camera.

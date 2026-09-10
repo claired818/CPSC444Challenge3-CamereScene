@@ -5,6 +5,12 @@ const container = document.getElementById("scene-container") || document.body;
 const pressedKeys = new Set();
 const cameraKeys = new Set(["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "w", "a", "s", "d"]);
 
+const perCamera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 100);
+const orthCamera = new THREE.OrthographicCamera(-11, 12, 9, -9, 0.1, 100);
+perCamera.position.set(0, 7, 17);
+orthCamera.position.set(0, 7, 17);
+let camera = perCamera;
+
 window.addEventListener("keydown", (event) => {
     if (cameraKeys.has(event.key)) {
         pressedKeys.add(event.key);
@@ -14,6 +20,19 @@ window.addEventListener("keydown", (event) => {
             zoomCamera(event.key === "ArrowUp" ? -1 : 1);
         }
     }
+
+    if (event.key === "o" || event.key === "O") {
+        camera = orthCamera;
+        document.getElementById("camera-info").innerHTML = "Current Camera: Orthographic";
+    } else if (event.key === "p" || event.key === "P") {
+        camera = perCamera;
+        document.getElementById("camera-info").innerHTML = "Current Camera: Perspective";
+    }
+
+    controls.object = camera;
+    camera.updateProjectionMatrix();
+    controls.update();
+    renderer.render(scene, camera);
 });
 
 window.addEventListener("keyup", (event) => {
@@ -22,9 +41,6 @@ window.addEventListener("keyup", (event) => {
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x87ceeb);
-
-const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 100);
-camera.position.set(0, 8, 16);
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
